@@ -7,6 +7,6 @@ hh:mm   | hh:mm
 Definirani zahtjevi aplikacije.
 Dovršena prva faza projekta.
 
-## 23.12.2021.
+## 27.01.2023.
 ### Kratki opis promjena
-Napravio sam navigaciju
+Opisan projekt.
