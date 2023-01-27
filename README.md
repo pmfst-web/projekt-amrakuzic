@@ -1,5 +1,5 @@
 # Projektne faze
-- [ ] - Opis projekta
+- [+] - Opis projekta
 - [ ] - Početna struktura aplikacije
 - [ ] - Prototip
 - [ ] - Konzultacije
@@ -8,12 +8,13 @@
 
 # Opis projekta
 ## Kratki opis
-Ovdje ide opis projekta
+Upravitelj zadacima - aplikacija će služiti korisniku za praćenje dnevnih/tjednih obaveza. Korisnik će imati pregled svih postojećih zadataka, dovršenih i nedovršenih zadataka. Također, korisnik će moći izmijeniti postojeće nedovršene zadatke i imati uvid u postotak izvršenosti zadataka. Prilikom upisivanja novog zadatka bit će moguće odabrati težinu zadatka i procjeniti vrijeme njegovog dovršetka. Na kraju, zadatci će se moći filtrirati prema težini, procjeni vremena i dovršenim/nedovršenim
 
 ## Popis funkcionalnosti
-1. a
-2. b
-3. c
+1. Dodavanje, izmjena i brisanje zadataka
+2. Pregled trenutnih, dovršenih i nedovršenih zadataka
+3. Filtriranje zadataka prema duljini, vrsti i procjeni duljine dovršavanja
+4. Mogućnost grupiranja zadataka(npr. zadatak vezan za školu/posao/slobodno vrijeme)
 
 
 ## UPUTE
