@@ -9,4 +9,4 @@ Dovršena prva faza projekta.
 
 ## 27.01.2023.
 ### Kratki opis promjena
-Opisan projekt.
+Opisan projekt sa njegovim funkcionalnostima.
