@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 
-const ButtonComponent = ({ onPress }) => {
+const Filter = ({ onPress }) => {
   return (
     <View style={styles.container}>
       <Pressable style={styles.button} onPress={onPress}>
-        <Text style={styles.text}>Novi Unos</Text>
+        <Text style={styles.text}>Filter</Text>
       </Pressable>
     </View>
 
@@ -16,22 +16,18 @@ const ButtonComponent = ({ onPress }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-
+    flex: 0.6,
     padding: 0,
-    marginRight: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width:'17%',
+    width:'50%',
   },
   button: {
-    borderWidth: 0,
-    borderRadius: 40,
+    borderRadius: 50,
     padding: 10,
-    width: 80,
-    height: 80,
-    backgroundColor: '#0060F1',
-    justifyContent: 'center',
+    elevation: 2,
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#5cb55c',
+    justifyContent: 'flex-end',
   },
   text: {
     fontSize: 16,
@@ -39,4 +35,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-export default ButtonComponent;
+export default Filter;

@@ -15,8 +15,31 @@ import ButtonComponent from './components/ButtonComponent';
 import ModalComponent from './components/ModalComponent';
 import { NavigationContainer } from '@react-navigation/native'; 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import PrikazNapravljenih from './screens/PrikazNapravljenih';
+import NapravljeniEkran from './screens/NapravljeniEkran';
+import NenapravljeniEkran from './screens/NenapravljeniEkran';
+import PocetniEkran from './screens/PocetniEkran';
+import Naslov  from './components/Naslov';
+import Filter from './components/Filter';
+import {Ionicons} from '@expo/vector-icons';
 const Tab = createBottomTabNavigator()
+
+
+const tabOptions = ({ route }) => ({
+   tabBarIcon: ({ focused, color, size }) => {
+   let imeIkone;
+   if (route.name === 'Napravljeni') {
+   imeIkone = focused
+   ? 'checkmark-done-circle-sharp'
+   : 'checkmark-done-sharp';
+   
+   } else if (route.name === 'Nenapravljeni') {
+   imeIkone = focused ? 'close-circle-outline' : 'close';
+   }
+   return <Ionicons name={imeIkone} size={size} color={color} />;
+   },
+   tabBarActiveTintColor: 'blue',
+   
+   });
 
 export default function App() {
   const [unos, postaviUnos] = useState('');
@@ -27,77 +50,35 @@ export default function App() {
   const [brojElemenata, postaviBrojElemenata] = useState(0);
   const [prosjekTroskova, postaviProsjekTroskova] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
-  const noviOpis = (tekst) => {
-    postaviUnos(tekst);
-  };
-  const noviIznos = (tekst) => {
-    postaviIznos(tekst);
-
-  };
-  const povecajBrElemenata = () => {
-    postaviBrojElemenata(brojElemenata => brojElemenata+1)
-
-  };
-  const smanjiBrElemenata = () => {
-    postaviBrojElemenata(brojElemenata => brojElemenata-1)
-
-  };
-      
-  const noviCilj = () => {
-    console.log(unos);
-    if (unos != "" && iznos!=0){
-      const noviObjekt = {
-        value: unos,
-        cijena: iznos,
-        key: Math.random().toString(),
-      };
-      postaviCiljeve((ciljevi) => [noviObjekt, ...ciljevi]);
-      setModalVisible(!modalVisible);
-      //racunajUkupniTrosak(ciljevi);
-      //postaviUkupniTrosak(ukupniTrosak => +ukupniTrosak + +noviObjekt.cijena);
-      //postaviProsjekTroskova(prosjekTroskova => ((+ukupniTrosak + +noviObjekt.cijena) / brojElemenata).toFixed(2));
-      console.log(brojElemenata);
-      postaviIznos("");
-      postaviUnos("");
-      setModalVisible(!modalVisible)
-    }
-
-  };
 
   return (
-    <View style={stilovi.ekran}>
-      <View style={stilovi.body}>
-
-      <ModalComponent modalVisible={modalVisible} setModalVisible={setModalVisible} />
-        <FlatList
-          style={stilovi.flatLista}
-          data={ciljevi}
-          renderItem={(el) => (
-            <TouchableOpacity onPress={() => console.log("Dodir")}>
-            <View style={stilovi.listaElement}>
-              <Text>{el.item.value} : ({el.item.cijena}) </Text>
-            </View>
-            </TouchableOpacity>
-          )}
-        />
-      <View style={stilovi.gumbFleks}>
-        <ButtonComponent onPress={() => setModalVisible(true)} />
-      </View>
-
-      </View>
-
-      <View style={stilovi.footer}>
-
-        <NavigationContainer> 
-          <Tab.Navigator> 
-            <Tab.Screen name="PrikazNapravljenih" component={PrikazNapravljenih} />
-            <Tab.Screen name="PrikazNapravljenih2" component={PrikazNapravljenih} /> 
+    <NavigationContainer> 
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              headerShown: false,
+              tabBarStyle: {
+                height: 90,
+                paddingHorizontal: 5,
+                paddingTop: 0,
+                backgroundColor: 'rgba(34,36,40,1)',
+                position: 'absolute',
+                borderTopWidth: 0,
+            },
+          })}
+          >
+             
+            <Tab.Screen name="Napravljeni" component={NapravljeniEkran}  options={{ tabBarIcon: () => {
+              return <Ionicons name="checkmark-done-sharp" size={40} color="green"/>}    
+              }} />
+            <Tab.Screen name="Pocetni" component={PocetniEkran} options={{ tabBarIcon: () => {
+              return <Ionicons name="home" size={40} color="blue"/>}    
+              }} />
+            <Tab.Screen name="Nenapravljeni" component={NenapravljeniEkran} options={{tabBarIcon: () => {
+              return <Ionicons name="close" size={40} color="red"/>}
+              }} />
           </Tab.Navigator>
           
         </NavigationContainer>
-     
-      </View>
-    </View>
 
   );
 }
@@ -162,19 +143,23 @@ const stilovi = StyleSheet.create({
     flex:5,
 
   },
+  header:{
+  }
+  ,
   body: {
-    minHeight: '92%',
+    minHeight: '81%',
     backgroundColor: '#ebad4e',
-
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   footer: {
     flexDirection: 'column',
-    //alignItems:'center',
-    justifyContent:'space-between',
+
+
+
     flex:1,
-    backgroundColor: '#6f9196',
     minWidth: '100%',
-    maxHeight: '5%',
+
   },
   tekst:{
     fontSize: 16,
@@ -231,6 +216,11 @@ const stilovi = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     justifyContent: 'center',
+  },
+  nav:{
+    alignContent:'center',
+    alignItems:'center',
+    justifyContent:'center',
   },
 
 });

@@ -2,7 +2,7 @@
 import { View, Text, StyleSheet, Button } from 'react-native';
 
 
-const PrikazNapravljenih = ({ route, navigation }) => {
+const NenapravljeniEkran = ({ route, navigation }) => {
 
   return (
     <Text></Text>
@@ -11,4 +11,4 @@ const PrikazNapravljenih = ({ route, navigation }) => {
 
 
 
-export default PrikazNapravljenih;
+export default NenapravljeniEkran;
