@@ -10,3 +10,7 @@ Dovršena prva faza projekta.
 ## 27.01.2023.
 ### Kratki opis promjena
 Opisan projekt sa njegovim funkcionalnostima.
+
+## 07.03.2023.
+### Kratki opis promjena
+Postavljanje početne strukture aplikacije.
