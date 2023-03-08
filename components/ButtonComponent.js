@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
-
+import { Ionicons } from '@expo/vector-icons';
 const ButtonComponent = ({ onPress }) => {
   return (
     <View style={styles.container}>
       <Pressable style={styles.button} onPress={onPress}>
-        <Text style={styles.text}>Novi Unos</Text>
+        <Ionicons name="add" size={64} color="white"/>
       </Pressable>
     </View>
 
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     height: 80,
     backgroundColor: '#0060F1',
     justifyContent: 'center',
+    alignItems:'center',
   },
   text: {
     fontSize: 16,

@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
-
+import { Ionicons } from '@expo/vector-icons';
 const Filter = ({ onPress }) => {
   return (
     <View style={styles.container}>
       <Pressable style={styles.button} onPress={onPress}>
-        <Text style={styles.text}>Filter</Text>
+        <Ionicons name="filter" size={40} color="white"/>
       </Pressable>
     </View>
 
@@ -23,10 +23,10 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 50,
     padding: 10,
-    elevation: 2,
+    elevation: 1,
     width: '100%',
     height: '100%',
-    backgroundColor: '#5cb55c',
+
     justifyContent: 'flex-end',
   },
   text: {

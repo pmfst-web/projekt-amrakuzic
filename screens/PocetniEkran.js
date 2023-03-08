@@ -32,7 +32,7 @@ const stil = StyleSheet.create({
   body: {
 
     minHeight: '100%',
-    backgroundColor: '#9A9A9A',
+    backgroundColor: 'rgba(34,36,40,1)',
     justifyContent: 'center',
     alignItems: 'center',
     width:'100%',

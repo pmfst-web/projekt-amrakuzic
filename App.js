@@ -67,13 +67,13 @@ export default function App() {
           })}
           >
              
-            <Tab.Screen name="Napravljeni" component={NapravljeniEkran}  options={{ tabBarIcon: () => {
+            <Tab.Screen name="Napravljeni" component={NapravljeniEkran}  options={{ tabBarActiveBackgroundColor:'rgba(44,46,50,1)',tabBarIcon: () => {
               return <Ionicons name="checkmark-done-sharp" size={40} color="green"/>}    
               }} />
-            <Tab.Screen name="Pocetni" component={PocetniEkran} options={{ tabBarIcon: () => {
+            <Tab.Screen name="Pocetni" component={PocetniEkran} options={{tabBarActiveBackgroundColor:'rgba(44,46,50,1)', tabBarIcon: () => {
               return <Ionicons name="home" size={40} color="blue"/>}    
               }} />
-            <Tab.Screen name="Nenapravljeni" component={NenapravljeniEkran} options={{tabBarIcon: () => {
+            <Tab.Screen name="Nenapravljeni" component={NenapravljeniEkran} options={{tabBarActiveBackgroundColor:'rgba(44,46,50,1)',tabBarIcon: () => {
               return <Ionicons name="close" size={40} color="red"/>}
               }} />
           </Tab.Navigator>

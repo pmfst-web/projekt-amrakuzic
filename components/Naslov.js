@@ -17,18 +17,19 @@ const stil = StyleSheet.create({
     width: "100%",
     height: '15%',
     paddingTop: 36,
-    backgroundColor: "#9A9A9A",
+    backgroundColor: 'rgba(34,36,40,1)',
     borderBottomWidth:1,
-    borderBottomColor:'white',
+    borderBottomColor:'rgba(114,116,110,1)',
 
     alignItems: "flex-end",
     justifyContent: "space-around",
     flexDirection:'row',
   },
   naslov: {
-    flex: 2,
-    color: "black",
+    flex: 2.5,
+    color: "rgba(134,136,130,1)",
     fontSize: 37,
+    fontWeight: 'bold',
     paddingBottom:10,
     
   },
