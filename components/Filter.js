@@ -5,7 +5,7 @@ const Filter = ({ onPress }) => {
   return (
     <View style={styles.container}>
       <Pressable style={styles.button} onPress={onPress}>
-        <Ionicons name="filter" size={40} color="white"/>
+        <Ionicons name="filter" size={32} color="white"/>
       </Pressable>
     </View>
 

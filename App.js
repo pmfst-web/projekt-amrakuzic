@@ -21,6 +21,7 @@ import PocetniEkran from './screens/PocetniEkran';
 import Naslov  from './components/Naslov';
 import Filter from './components/Filter';
 import {Ionicons} from '@expo/vector-icons';
+import ModalFilter from './components/ModalFilter';
 const Tab = createBottomTabNavigator()
 
 
@@ -53,7 +54,9 @@ export default function App() {
 
   return (
     <NavigationContainer> 
+          <Naslov naslov={"Task Tracker"}/>
           <Tab.Navigator
+            initialRouteName="Pocetni"
             screenOptions={({ route }) => ({
               headerShown: false,
               tabBarStyle: {
@@ -66,15 +69,14 @@ export default function App() {
             },
           })}
           >
-             
             <Tab.Screen name="Napravljeni" component={NapravljeniEkran}  options={{ tabBarActiveBackgroundColor:'rgba(44,46,50,1)',tabBarIcon: () => {
-              return <Ionicons name="checkmark-done-sharp" size={40} color="green"/>}    
+              return <Ionicons name="checkmark-done-sharp" size={34} color="green"/>}    
               }} />
             <Tab.Screen name="Pocetni" component={PocetniEkran} options={{tabBarActiveBackgroundColor:'rgba(44,46,50,1)', tabBarIcon: () => {
-              return <Ionicons name="home" size={40} color="blue"/>}    
+              return <Ionicons name="home" size={34} color="blue"/>}    
               }} />
             <Tab.Screen name="Nenapravljeni" component={NenapravljeniEkran} options={{tabBarActiveBackgroundColor:'rgba(44,46,50,1)',tabBarIcon: () => {
-              return <Ionicons name="close" size={40} color="red"/>}
+              return <Ionicons name="close" size={34} color="red"/>}
               }} />
           </Tab.Navigator>
           
@@ -103,6 +105,9 @@ const stilovi = StyleSheet.create({
   },
   gumbFleks:{
     flex: 0.1,
+  },
+  gumbPozicija:{
+
   },
   gumb:{
     borderRadius: 20,

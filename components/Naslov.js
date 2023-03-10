@@ -1,22 +1,22 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Filter from './Filter';
+import ModalComponent from './ModalComponent';
 const Naslov = (props) => {
   return (
     <View style={stil.zaglavlje}>
       <Text style={stil.pomocni}></Text>        
       <Text style={stil.naslov}>{props.naslov}</Text>
       <Filter />
+
     </View>
   );
 };
 
 const stil = StyleSheet.create({
   zaglavlje: {
-    marginTop:75,
     width: "100%",
-    height: '15%',
-    paddingTop: 36,
+    height: '13%',
     backgroundColor: 'rgba(34,36,40,1)',
     borderBottomWidth:1,
     borderBottomColor:'rgba(114,116,110,1)',
