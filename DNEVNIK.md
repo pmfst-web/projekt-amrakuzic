@@ -18,3 +18,10 @@ Postavljanje početne strukture aplikacije.
 ## 08.03.2023.
 ### Kratki opis promjena
 Nastavak izrađivanja početne strukture aplikacije te dizajniranje komponenti.
+
+## 10.03.2023.
+### Kratki opis promjena
+Dizajniranje gumba na početnom ekranu.
+Uređivanje flatliste i njezinih elemenata.
+Dizajniranje Modalnih komponenti.
+Restrukturiranje projekta.
