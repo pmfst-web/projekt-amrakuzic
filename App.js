@@ -11,6 +11,8 @@ import {
   Pressable,
   Modal, 
 } from 'react-native';
+import {createStore, combineReducers} from 'redux'
+import zadatakReducer from './store/reducers/zadaci'
 import ButtonComponent from './components/ButtonComponent';
 import ModalComponent from './components/ModalComponent';
 import { NavigationContainer } from '@react-navigation/native'; 
@@ -21,6 +23,7 @@ import PocetniEkran from './screens/PocetniEkran';
 import Naslov  from './components/Naslov';
 import Filter from './components/Filter';
 import {Ionicons} from '@expo/vector-icons';
+import { Provider } from "react-redux";
 import ModalFilter from './components/ModalFilter';
 const Tab = createBottomTabNavigator()
 
@@ -41,46 +44,55 @@ const tabOptions = ({ route }) => ({
    tabBarActiveTintColor: 'blue',
    
    });
-
+// Spajanje svih reducera u jedan objekt
+  const glavniReducer = combineReducers({
+  zadaci: zadatakReducer
+  })
+  // Stvaramo centralni spremnik
+  const store = createStore(glavniReducer);
 export default function App() {
   const [unos, postaviUnos] = useState('');
   const [iznos, postaviIznos] = useState(0);
   const [ciljevi, postaviCiljeve] = useState([]);
-  console.log("lista",ciljevi.length)
+  console.log(glavniReducer);
   const [ukupniTrosak, postaviUkupniTrosak] = useState(0);
   const [brojElemenata, postaviBrojElemenata] = useState(0);
   const [prosjekTroskova, postaviProsjekTroskova] = useState(0);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(true);
 
   return (
-    <NavigationContainer> 
-          <Naslov naslov={"Task Tracker"}/>
-          <Tab.Navigator
-            initialRouteName="Pocetni"
-            screenOptions={({ route }) => ({
-              headerShown: false,
-              tabBarStyle: {
-                height: 90,
-                paddingHorizontal: 5,
-                paddingTop: 0,
-                backgroundColor: 'rgba(34,36,40,1)',
-                position: 'absolute',
-                borderTopWidth: 0,
-            },
-          })}
-          >
-            <Tab.Screen name="Napravljeni" component={NapravljeniEkran}  options={{ tabBarActiveBackgroundColor:'rgba(44,46,50,1)',tabBarIcon: () => {
-              return <Ionicons name="checkmark-done-sharp" size={34} color="green"/>}    
-              }} />
-            <Tab.Screen name="Pocetni" component={PocetniEkran} options={{tabBarActiveBackgroundColor:'rgba(44,46,50,1)', tabBarIcon: () => {
-              return <Ionicons name="home" size={34} color="blue"/>}    
-              }} />
-            <Tab.Screen name="Nenapravljeni" component={NenapravljeniEkran} options={{tabBarActiveBackgroundColor:'rgba(44,46,50,1)',tabBarIcon: () => {
-              return <Ionicons name="close" size={34} color="red"/>}
-              }} />
-          </Tab.Navigator>
-          
-        </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer> 
+            <Naslov naslov={"Task Tracker"}/>
+            <Tab.Navigator
+              initialRouteName="Pocetni"
+              screenOptions={({ route }) => ({
+                headerShown: false,
+                tabBarStyle: {
+                  height: 90,
+                  paddingHorizontal: 5,
+                  paddingTop: 0,
+                  backgroundColor: 'rgba(34,36,40,1)',
+                  position: 'absolute',
+                  borderTopWidth: 0,
+              },
+            })}
+            >
+              <Tab.Screen name="Napravljeni" component={NapravljeniEkran}  options={{ tabBarActiveBackgroundColor:'rgba(44,46,50,1)',tabBarIcon: () => {
+                return <Ionicons name="checkmark-done-sharp" size={34} color="green"/>}    
+                }} />
+              <Tab.Screen name="Pocetni" component={PocetniEkran} options={{tabBarActiveBackgroundColor:'rgba(44,46,50,1)', tabBarIcon: () => {
+                return <Ionicons name="home" size={34} color="blue"/>}    
+                }} />
+              <Tab.Screen name="Nenapravljeni" component={NenapravljeniEkran} options={{tabBarActiveBackgroundColor:'rgba(44,46,50,1)',tabBarIcon: () => {
+                return <Ionicons name="close" size={34} color="red"/>}
+                }} />
+            </Tab.Navigator>
+            
+      </NavigationContainer>
+
+    </Provider>
+
 
   );
 }

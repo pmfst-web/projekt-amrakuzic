@@ -4,6 +4,9 @@ import Naslov from '../components/Naslov';
 import ButtonComponent from '../components/ButtonComponent';
 import { FlatList } from 'react-native';
 import ModalComponent from '../components/ModalComponent';
+import { ZADACI } from '../data/test-podaci';
+import ListaElement from '../components/ListaElement';
+import { useSelector } from 'react-redux';
 
 
 const DATA = [
@@ -27,10 +30,10 @@ const Item = ({title}) => (
   </View>
 );
 
-const PocetniEkran = ({navigation}) => {
+const PocetniEkran = ({route, navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [showModal, setShowModal] = useState(false);
-
+  const zadaciPrikaz = useSelector(state => state.zadaci.filterZadaci)
   const closeModal = () => {
     setShowModal(false);
   }
@@ -39,27 +42,24 @@ const PocetniEkran = ({navigation}) => {
 
     setShowModal(true);
   }
-  
+  const prikazElelementa = (podaci) => {
+    return (
+      <ListaElement
+        onPress={() => navigation.navigate('Detalji', { id: podaci.item.id })}
+        natpis={podaci.item.naslov}
+      />
+    );
+  };
   return (
     <View style={stil.ekran}>
       <View style={stil.body}>
 
-        <FlatList
-          style={stil.flatLista}
-          data={DATA}
-          renderItem={(item) => (
-            <Pressable onPress={() => {}}
-              style={({ pressed }) => [
-                {
-                  opacity: pressed ? 0.6 : 1
-                },
-              ]}>
-              <View style={stil.listaElement}>
-                <Text>{item.title}</Text>
-              </View>
-            </Pressable>
-          )}
-          keyExtractor={item => item.id}
+      <FlatList
+          showsVerticalScrollIndicator={false}
+          style={{ margin: 5 }}
+          data={ZADACI}
+          renderItem={prikazElelementa}
+          numColumns={1}
         />
 
         <ModalComponent visible={showModal} closeModal={closeModal} />

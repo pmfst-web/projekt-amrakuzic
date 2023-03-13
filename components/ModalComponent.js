@@ -12,7 +12,7 @@ const ModalComponent = (props) => {
 
 
   return (
-    <Modal animationType="slide" transparent={true} visible={props.visible}>
+    <Modal animationType="slide" transparent={true} visible={true}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <TextInput
