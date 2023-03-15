@@ -25,3 +25,12 @@ Dizajniranje gumba na početnom ekranu.
 Uređivanje flatliste i njezinih elemenata.
 Dizajniranje Modalnih komponenti.
 Restrukturiranje projekta.
+
+## 13.03.2023.
+### Kratki opis promjena
+Redux
+
+## 15.03.2023.
+### Kratki opis promjena
+Dizajn modalne komponente za unos novih zadataka
+Osnovne funkcionalnosti modalne komponente za unos novih zadataka
