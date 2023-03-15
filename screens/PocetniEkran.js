@@ -8,40 +8,17 @@ import { ZADACI } from '../data/test-podaci';
 import ListaElement from '../components/ListaElement';
 import { useSelector } from 'react-redux';
 
-
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },
-];
-
-const Item = ({title}) => (
-  <View style={stil.listaElement}>
-    <Text>{title}</Text>
-  </View>
-);
-
 const PocetniEkran = ({route, navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const zadaciPrikaz = useSelector(state => state.zadaci.filterZadaci)
-  const closeModal = () => {
-    setShowModal(false);
-  }
+  const zadaciPrikaz = useSelector(state => state.zadaci.filterZadaci);
+  console.log({modalVisible});
+  const handleModal = () => {
+    setModalVisible(!modalVisible);
+    console.log("Promijenilo se stanje!");
+  };
   
-  const openModal = () => {
 
-    setShowModal(true);
-  }
   const prikazElelementa = (podaci) => {
     return (
       <ListaElement
@@ -57,15 +34,12 @@ const PocetniEkran = ({route, navigation}) => {
       <FlatList
           showsVerticalScrollIndicator={false}
           style={{ margin: 5 }}
-          data={ZADACI}
+          data={zadaciPrikaz}
           renderItem={prikazElelementa}
           numColumns={1}
         />
-
-        <ModalComponent visible={showModal} closeModal={closeModal} />
-
-        <ButtonComponent onPress={openModal} />
-
+        <ButtonComponent onPress={handleModal} />
+        <ModalComponent modalVisible={modalVisible} closeModal={handleModal}/>
 
       </View>
     </View>

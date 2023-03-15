@@ -1,62 +1,112 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Modal, TextInput, Pressable } from 'react-native';
-import {Picker} from '@react-native-picker/picker';
+import { TouchableWithoutFeedback } from 'react-native';
+import SelectDropdown from 'react-native-select-dropdown';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { FontAwesome } from '@expo/vector-icons';
 
-const ModalComponent = (props) => {
-  const [unos, setUnos] = useState('');
-  const [iznos, setIznos] = useState('');
-
-  const noviOpis = (text) => setUnos(text);
-  const noviIznos = (text) => setIznos(text);
-  const [selectedLanguage, setSelectedLanguage] = useState('');
-
+const ModalComponent = ({modalVisible,closeModal}) => {
+  const [naziv, setNaziv] = useState('');
+  const [opis, setOpis] = useState('');
+  const [vrijeme, setVrijeme] = useState('');
+  const odabirTezina = ["Lako", "Srednje", "Teško"];
+  const odabirVrsta = ["Škola", "Posao", "Slobodno Vrijeme"];
+  const noviNaziv = (text) => setNaziv(text);
+  const noviOpis = (text) => setOpis(text);
+  const novoVrijeme = (text) => setVrijeme(text);
+  const handleOverlayClick = (event) => {
+      if (event.target === event.currentTarget) {
+        closeModal();
+      }
+    }
 
   return (
-    <Modal animationType="slide" transparent={true} visible={true}>
+    <Modal animationType="slide" transparent={true} visible={modalVisible}>
+      <TouchableWithoutFeedback onPress={handleOverlayClick}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
+          <Text style={styles.naslov}>Novi Zadatak</Text>
           <TextInput
-            placeholder="Opis troška"
+            placeholder="Naziv zadatka"
             placeholderTextColor="grey"
             style={styles.unos}
-            value={unos}
+            value={naziv}
+            onChangeText={noviNaziv}
+          />
+          <TextInput
+            placeholder="Opis zadatka..."
+            placeholderTextColor="grey"
+            style={styles.unos}
+            value={opis}
             onChangeText={noviOpis}
           />
-          <TextInput
-            placeholder="Dodaj iznos.."
-            placeholderTextColor="grey"
-            keyboardType="numeric"
-            style={styles.unos}
-            value={iznos}
-            onChangeText={noviIznos}
-          />
-        <Text style={styles.label}>Select a color:</Text>
-        <Picker
-        style={styles.picker}
-  selectedValue={selectedLanguage}
-  onValueChange={(itemValue, itemIndex) =>
-    setSelectedLanguage(itemValue)
-  }>
-  <Picker.Item label="Lako" value="lako" style={styles.pickerItem} />
-  <Picker.Item label="Srednje" value="srednje" style={styles.pickerItem}/>
-  <Picker.Item label="Teško" value="tesko" style={styles.pickerItem}/>
-</Picker>
-        <Text style={styles.selectedValue}>Odabrana težina {selectedLanguage}
-        </Text>
+          <View style={{width:"100%",height:'25%',flexDirection:"row",justifyContent:"center",alignItems:"center",marginTop:25}}>
+            <SelectDropdown
+              buttonStyle={styles.dropdown2BtnStyle}
+              buttonTextStyle={styles.dropdown2BtnTxtStyle}
+              renderDropdownIcon={isOpened => {
+                return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={'#FFF'} size={18} />;
+              }}
+              dropdownIconPosition={'right'}
+              dropdownStyle={styles.dropdown2DropdownStyle}
+              rowStyle={styles.dropdown2RowStyle}
+              rowTextStyle={styles.dropdown2RowTxtStyle}
+              data={odabirTezina}
+              onSelect={(selectedItem, index) => {
+                console.log(selectedItem, index)
+              }}
+              defaultButtonText = "Odaberi težinu:"
+              buttonTextAfterSelection={(selectedItem, index) => {
+              // text represented after item is selected
+              // if data array is an array of objects then return selectedItem.property to render after item is selected
+                return selectedItem
+              }}
+              rowTextForSelection={(item, index) => {
+              // text represented for each item in dropdown
+              // if data array is an array of objects then return item.property to represent item in dropdown
+                return item
+              }}
+            />
+            <SelectDropdown
+              data={odabirVrsta}
+              buttonStyle={styles.dropdown2BtnStyle}
+              buttonTextStyle={styles.dropdown2BtnTxtStyle}
+              renderDropdownIcon={isOpened => {
+                return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={'#FFF'} size={18} />;
+              }}
+              dropdownIconPosition={'right'}
+              dropdownStyle={styles.dropdown2DropdownStyle}
+              rowStyle={styles.dropdown2RowStyle}
+              rowTextStyle={styles.dropdown2RowTxtStyle}
+              onSelect={(selectedItem, index) => {
+                console.log(selectedItem, index)
+              }}
+              defaultButtonText = "Odaberi vrstu:"
+              buttonTextAfterSelection={(selectedItem, index) => {
+                return selectedItem
+              }}
+              rowTextForSelection={(item, index) => {
+                return item
+              }}
+            />
+          </View>
 
+          <Text style={{marginTop:20}}>Odaberi vrijeme dovršetka</Text>
+          <View style={styles.dateTime}>
+            <DateTimePicker value={new Date()} style={{width:"50%",height:'50%'}}/>
+            <DateTimePicker mode="time" value={new Date()} style={{width:"25%",height:'50%'}}/>  
+          </View>
+          
           <View style={styles.modalButtons}>
             <Pressable style={[styles.button, styles.buttonDodaj]} >
               <Text style={styles.textStyle}>Dodaj</Text>
             </Pressable>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={props.closeModal}
-            >
-              <Text style={styles.textStyle}>Zatvori</Text>
-            </Pressable>
+
           </View>
+          
         </View>
       </View>
+      </TouchableWithoutFeedback>
     </Modal>
   );
 };
@@ -72,14 +122,13 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   modalView: {
-    margin: 1,
-    backgroundColor: 'white',
-    borderRadius: 20,
+    backgroundColor: "rgba(200,200,200,1)",
+    borderRadius: 30,
     padding: 10,
-    width:'70%',
+    width:'75%',
     height:'50%',
     alignItems: 'center',
-    shadowColor: '#000',
+    shadowColor: 'white',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -95,18 +144,25 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderBottomColor: 'black',
     borderBottomWidth: 1,
-    fontSize: 16,
+    fontSize: 18,
+},
+naslov:{
+  color: "rgba(134,136,130,1)",
+  fontSize:28,
+  fontWeight:"bold"
 },
 modalButtons:{
-  flexDirection:'row',
-
-  marginTop:5,
+  height:"15%",
+  width:"70%",
 },
 button: {
   borderRadius: 20,
-  padding: 10,
+  flex: 2,
   elevation: 2,
-  marginLeft:5,
+  width:"100%",
+  justifyContent:"center",
+  alignItems:"center"
+
 },
 buttonDodaj:{
   backgroundColor:'#0060F1',
@@ -115,27 +171,40 @@ buttonClose:{
   backgroundColor:'red',
 },
 textStyle:{
-
+  color:"white",
+  fontSize:18
 },
-pickerContainer: {
-
+dropdown2BtnStyle: {
+  width: '50%',
+  height: 50,
+  backgroundColor: '#444',
+  borderRadius: 8,
+  margin:5,
 },
-picker: {
-  width: '100%',
-  height: 40,
-  color: '#333',
-  borderWidth: 1,
-  borderColor: '#ccc',
-  borderRadius: 5,
-  overflow: 'hidden',
-  paddingHorizontal: 10,
-  flex:1,
+dropdown2BtnTxtStyle: {
+  color: '#FFF',
+  textAlign: 'center',
+  fontWeight: 'bold',
 },
-pickerItem: {
-  fontSize: 16,
-  fontFamily: 'Arial',
-  color: 'black',
+dropdown2DropdownStyle: {
+  backgroundColor: '#444',
+  borderBottomLeftRadius: 12,
+  borderBottomRightRadius: 12,
 },
+dropdown2RowStyle: {backgroundColor: '#444', borderBottomColor: '#C5C5C5'},
+dropdown2RowTxtStyle: {
+  color: '#FFF',
+  textAlign: 'center',
+  fontWeight: 'bold',
+},
+dateTime:{
+  width:"100%",
+  height:'20%',
+  flexDirection:"row",
+  justifyContent:"flex-start",
+  alignItems:"center",
+  marginLeft:40
+}
 });
 
 export default ModalComponent;

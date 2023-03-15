@@ -5,8 +5,7 @@ const ButtonComponent = ({ onPress }) => {
   return (
     <View style={styles.container}>
       <Pressable
-        onPress={() => {
-        }}
+        onPress={onPress}
         style={({ pressed }) => [
           {
             backgroundColor: '#0060F1',
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
       height: 0,
     },
     shadowOpacity: 0.48,
-    shadowRadius: 4,
+    shadowRadius: 2,
     
     elevation: 10,
     
