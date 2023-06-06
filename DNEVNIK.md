@@ -34,3 +34,11 @@ Redux
 ### Kratki opis promjena
 Dizajn modalne komponente za unos novih zadataka
 Osnovne funkcionalnosti modalne komponente za unos novih zadataka
+
+## 06.06.2023.
+### Kratki opis promjena
+Dodana modalna komponenta za prikaz detalja.
+Ispis detalja zadatka na novu komponentu.
+Popravljene dependency pogreške.
+Zamijenjena DateTimePicker komponenta.
+
