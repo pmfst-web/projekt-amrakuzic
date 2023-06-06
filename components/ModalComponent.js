@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Modal, TextInput, Pressable } from 'react-nativ
 import { TouchableWithoutFeedback } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
 import { FontAwesome } from '@expo/vector-icons';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 const ModalComponent = ({modalVisible,closeModal}) => {
@@ -13,7 +14,7 @@ const ModalComponent = ({modalVisible,closeModal}) => {
   const odabirVrsta = ["Škola", "Posao", "Slobodno Vrijeme"];
   const noviNaziv = (text) => setNaziv(text);
   const noviOpis = (text) => setOpis(text);
-  const novoVrijeme = (text) => setVrijeme(text);
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const handleOverlayClick = (event) => {
       if (event.target === event.currentTarget) {
         closeModal();
@@ -92,19 +93,23 @@ const ModalComponent = ({modalVisible,closeModal}) => {
           </View>
 
           <Text style={{marginTop:20}}>Odaberi vrijeme dovršetka</Text>
-          <View style={styles.dateTime}>
-          
-
+          <View style={styles.dateTimeOkvir}>
+            <DateTimePicker style={styles.dateTime}
+              mode="datetime"
+              display="spinner"
+              value={selectedDate}
+              onChange={(event, date) => setSelectedDate(date)}
+            />
           </View>
           
-          <View style={styles.modalButtons}>
+
+          
+        </View>
+        <View style={styles.modalButtons}>
             <Pressable style={[styles.button, styles.buttonDodaj]} >
               <Text style={styles.textStyle}>Dodaj</Text>
             </Pressable>
-
           </View>
-          
-        </View>
       </View>
       </TouchableWithoutFeedback>
     </Modal>
@@ -119,7 +124,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
+    marginTop: 0,
   },
   modalView: {
     backgroundColor: "rgba(200,200,200,1)",
@@ -152,14 +157,17 @@ naslov:{
   fontWeight:"bold"
 },
 modalButtons:{
-  height:"15%",
-  width:"70%",
+  height:"10%",
+  width:"40%",
 },
 button: {
   borderRadius: 20,
+  marginTop: -35,
+  marginBottom:35,
   flex: 2,
   elevation: 2,
   width:"100%",
+  height:"10%",
   justifyContent:"center",
   alignItems:"center"
 
@@ -199,11 +207,10 @@ dropdown2RowTxtStyle: {
 },
 dateTime:{
   width:"100%",
-  height:'20%',
-  flexDirection:"row",
-  justifyContent:"flex-start",
-  alignItems:"center",
-  marginLeft:40
+  height:'35%'
+},
+dateTimeOkvir:{
+  width:"100%"
 }
 });
 
