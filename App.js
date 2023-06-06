@@ -171,9 +171,6 @@ const stilovi = StyleSheet.create({
   },
   footer: {
     flexDirection: 'column',
-
-
-
     flex:1,
     minWidth: '100%',
 

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text, Modal, TextInput, Pressable } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import { FontAwesome } from '@expo/vector-icons';
+
 
 const ModalComponent = ({modalVisible,closeModal}) => {
   const [naziv, setNaziv] = useState('');
@@ -93,8 +93,8 @@ const ModalComponent = ({modalVisible,closeModal}) => {
 
           <Text style={{marginTop:20}}>Odaberi vrijeme dovršetka</Text>
           <View style={styles.dateTime}>
-            <DateTimePicker value={new Date()} style={{width:"50%",height:'50%'}}/>
-            <DateTimePicker mode="time" value={new Date()} style={{width:"25%",height:'50%'}}/>  
+          
+
           </View>
           
           <View style={styles.modalButtons}>

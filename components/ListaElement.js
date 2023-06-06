@@ -38,12 +38,10 @@ const stil = StyleSheet.create({
     flex: 0.99,
   },
   naslov: {
-    color: "white",
-    numberOfLines: 1,
+    color: "white"
   },
   ime: {
     width: '70%',
-    numberOfLines: 1,
     ellipsizeMode: 'tail',
     flex: 1,
     padding: 5,
