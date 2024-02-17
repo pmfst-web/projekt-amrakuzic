@@ -52,7 +52,9 @@ const PocetniEkran = ({ route, navigation }) => {
           renderItem={prikazElementa}
           numColumns={1}
         />
+        <Button title="Promjena dovrsenih" style={{width:250,height:250,margin:10,border:25,borderColor:'red',alignItems:'center'}}/>
         <ButtonComponent onPress={handleAddModal} />
+        
         <ModalDetalji
           modalVisible={itemModalVisible}
           closeModal={() => setItemModalVisible(false)}

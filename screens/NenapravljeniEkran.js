@@ -1,22 +1,16 @@
-
-import { View, Text, StyleSheet, Button } from 'react-native';
 import Naslov from '../components/Naslov';
 import { FlatList } from 'react-native';
-import { Pressable } from 'react-native';
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },
-];
+import { useSelector } from 'react-redux';
+import { ZADACI } from '../data/test-podaci';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Button, Pressable } from 'react-native';
+import ButtonComponent from '../components/ButtonComponent';
+import ButtonDelete from '../components/ButtonDelete';
+import ModalComponent from '../components/ModalComponent';
+import ModalDetalji from '../components/ModalDetalji';
+import ListaElement from '../components/ListaElement';
+import Swipeable from 'react-native-swipeable';
+
 
 const Item = ({title}) => (
   <View style={stil.listaElement}>
@@ -25,30 +19,51 @@ const Item = ({title}) => (
 );
 
 const NenapravljeniEkran = ({ route, navigation }) => {
+  const [itemModalVisible, setItemModalVisible] = useState(false);
+  const [addModalVisible, setAddModalVisible] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null); // State to store the selected item
+  const zadaciPrikaz = useSelector((state) => state.zadaci.filterZadaci);
 
+  const handleItemModal = (podaci) => {
+    setSelectedItem(podaci.item); // Set the selected item
+    setItemModalVisible(true);
+  };
+
+  const handleAddModal = () => {
+    setAddModalVisible(!addModalVisible);
+  };
+
+  const prikazElementa = (podaci) => {
+    return (
+        <ListaElement
+          onPress={() => handleItemModal(podaci)}
+          natpis={podaci.item.naslov}
+          style={stil.listaElement}
+        />
+    );
+  };
   return (
     <View style={stil.ekran}>
         
 
       <View style={stil.body}>
       <FlatList
-        style={stil.flatLista}
-        data={DATA}
-        renderItem={(item) => (
-        <Pressable onPress={() => {
-          }}
-          style={({ pressed }) => [
-            {
-              opacity: pressed ? 0.6 : 1
-            },
-          ]}>
-          <View style={stil.listaElement}>
-            <Text>{item.title}</Text>
-          </View>
-        </Pressable>
-        )}
-        keyExtractor={item => item.id}
-      />
+          showsVerticalScrollIndicator={false}
+          style={{ margin: 5 }}
+          data={zadaciPrikaz}
+          renderItem={prikazElementa}
+          numColumns={1}
+        />
+        <ModalDetalji
+          modalVisible={itemModalVisible}
+          closeModal={() => setItemModalVisible(false)}
+          selectedItem={selectedItem}
+        />
+        <ModalComponent
+          modalVisible={addModalVisible}
+          closeModal={handleAddModal}
+          isAddModal
+        />        
       </View>
     </View>
   );
@@ -73,7 +88,7 @@ const stil = StyleSheet.create({
   listaElement: {
     padding:15,
     marginVertical: 5,
-    backgroundColor: 'red',
+    backgroundColor: 'purple',
     borderColor: 'white',
     borderRadius: 15,
     borderWidth: 2,
