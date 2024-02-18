@@ -29,10 +29,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 0,
-    position: 'relative',
-    bottom:'-35%',
+    position: 'absolute',
+    bottom:'-2%',
     width:'10%',
-    right:'45%',
+    left:'0%',
   },
   button: {
     borderRadius: 35,

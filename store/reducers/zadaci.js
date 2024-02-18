@@ -7,7 +7,7 @@ const pocetnoStanje = {
   nedovrseniZadaci: [],
   izbrisaniZadaci: [],
   filtriraniZadaci: [],
-  availableFilters: ['lako', 'srednje', 'tesko', 'none'],
+  availableFilters: ['none','lako', 'srednje', 'tesko'],
   currentFilterIndex: 0,
 };
 

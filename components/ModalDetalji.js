@@ -51,13 +51,16 @@ const ModalDetalji = ({modalVisible,closeModal,selectedItem}) => {
             <Text style={styles.naslov}>Detalji Zadatka</Text>
             <Text style={styles.textStyle}>ID: {selectedItem.id}</Text>
             <Text style={styles.textStyle}>Naslov: {selectedItem.naslov}</Text>
-            <ButtonUnfinished onPress={akcijaPromjenaNedovrsenih} />
+            
 
             <Text style={styles.textStyle}>Opis: {selectedItem.opis}</Text>
 
             <Text style={styles.textStyle}>Tezina: {selectedItem.tezina}</Text>
+            <Text style={styles.textStyle}>Vrsta: {selectedItem.vrsta}</Text>
+            <Text style={styles.textStyle}>Datum: {selectedItem.vrijeme}</Text>
             <ButtonAddFinished onPress={akcijaPromjenaDovrsenih} />
             <ButtonDeleteTask onPress={akcijaIzbrisiZadatak}/>
+            <ButtonUnfinished onPress={akcijaPromjenaNedovrsenih} />
             <Text>{selectedItem.vrijeme instanceof Date ? selectedItem.vrijeme.toISOString() : ''}</Text>
             
         </View>
@@ -75,16 +78,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
+    marginTop: 2,
   },
   modalView: {
     backgroundColor: "rgba(200,200,200,1)",
     borderRadius: 30,
-    padding: 10,
-    width:'75%',
+    padding: 15,
+    width:'80%',
     height:'50%',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+   
+    alignItems: 'left',
     shadowColor: 'white',
     shadowOffset: {
       width: 0,
@@ -106,7 +109,9 @@ const styles = StyleSheet.create({
 naslov:{
   color: "rgba(134,136,130,1)",
   fontSize:28,
-  fontWeight:"bold"
+  fontWeight:"bold",
+  position:'relative',
+  right:"-15%",
 },
 modalButtons:{
   height:"15%",
@@ -129,7 +134,11 @@ buttonClose:{
 },
 textStyle:{
   color:"white",
-  fontSize:18
+  fontSize:18,
+  padding: 0,
+  textAlign: 'left',
+  marginBottom:10,
+  marginTop:10,
 },
 dropdown2BtnStyle: {
   width: '50%',

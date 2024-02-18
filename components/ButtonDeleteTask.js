@@ -29,9 +29,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 0,
-        position: 'relative',
-        bottom:'80%',
-        right:'-45%',
+        position: 'absolute',
+        bottom:'98%',
+        right:'0%',
         width:'10%',
       },
     button: {
