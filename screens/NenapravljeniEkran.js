@@ -22,7 +22,7 @@ const NenapravljeniEkran = ({ route, navigation }) => {
   const [itemModalVisible, setItemModalVisible] = useState(false);
   const [addModalVisible, setAddModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null); // State to store the selected item
-  const zadaciPrikaz = useSelector((state) => state.zadaci.filterZadaci);
+  const zadaciPrikaz = useSelector((state) => state.zadaci.nedovrseniZadaci);
 
   const handleItemModal = (podaci) => {
     setSelectedItem(podaci.item); // Set the selected item

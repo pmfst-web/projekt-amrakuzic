@@ -4,9 +4,10 @@ import { TouchableWithoutFeedback } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import React, { useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { promjenaDovrsenih } from "../store/actions/zadaci";
+import { promjenaDovrsenih, promjenaNedovrsenih } from "../store/actions/zadaci";
 import { Button } from 'react-native-paper';
 import ButtonComponent from './ButtonComponent';
+import ButtonAddComponent from './ButtonAddFinished';
 const ModalDetalji = ({modalVisible,closeModal,selectedItem}) => {
 
   const handleOverlayClick = (event) => {
@@ -23,11 +24,15 @@ const ModalDetalji = ({modalVisible,closeModal,selectedItem}) => {
     const zadatak = sviZadaci.find((r) => r.id === idZadatka);
     const dispatch = useDispatch();
     const akcijaPromjenaDovrsenih = () =>{
-      console.log(idZadatka)
+      console.log(idZadatka);
       dispatch(promjenaDovrsenih(idZadatka));
       closeModal();
     }
-
+    const akcijaPromjenaNedovrsenih = () =>{
+      console.log(idZadatka);
+      dispatch(promjenaNedovrsenih(idZadatka));
+      closeModal();
+    }
 
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>
@@ -38,10 +43,12 @@ const ModalDetalji = ({modalVisible,closeModal,selectedItem}) => {
             <Text style={styles.naslov}>Detalji Zadatka</Text>
             <Text style={styles.textStyle}>ID: {selectedItem.id}</Text>
             <Text style={styles.textStyle}>Naslov: {selectedItem.naslov}</Text>
+            <ButtonAddComponent onPress={akcijaPromjenaNedovrsenih} />
             <Text style={styles.textStyle}>Opis: {selectedItem.opis}</Text>
 
             <Text style={styles.textStyle}>Tezina: {selectedItem.tezina}</Text>
             <ButtonComponent onPress={akcijaPromjenaDovrsenih} />
+            
             <Text style={styles.textStyle}>Vrijeme: {selectedItem.vrijeme}</Text>
             
         </View>

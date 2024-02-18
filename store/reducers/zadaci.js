@@ -1,38 +1,59 @@
 import { ZADACI } from "../../data/test-podaci";
-import { PROMJENA_DOVRSENIH } from "../actions/zadaci";
+import { PROMJENA_DOVRSENIH, PROMJENA_NEDOVRSENIH } from "../actions/zadaci";
 
 const pocetnoStanje = {
-    zadaci: ZADACI,
-    dovrseniZadaci: [],
-    nedovrseniZadaci: [],
-  };
+  zadaci: ZADACI,
+  dovrseniZadaci: [],
+  nedovrseniZadaci: [],
+};
 
 const zadatakReducer = (state = pocetnoStanje, action) => {
-    switch (action.type) {
-        case PROMJENA_DOVRSENIH:
-            const { idZadatka } = action.payload;
+  switch (action.type) {
+    case PROMJENA_DOVRSENIH:
+      const { idZadatka: idDovrsenog } = action.payload;
 
-            // Find the task in the current list
-            const taskToMove = state.zadaci.find((zadatak) => zadatak.id === idZadatka);
+      // Find the task in the current list
+      const taskToMoveDovrseni = state.zadaci.find((zadatak) => zadatak.id === idDovrsenog);
 
-            if (!taskToMove) {
-                console.error(`Task with id ${idZadatka} not found.`);
-                return state;
-            }
+      if (!taskToMoveDovrseni) {
+        console.error(`Task with id ${idDovrsenog} not found.`);
+        return state;
+      }
 
-            // Move the task to the appropriate list based on your business logic
-            const updatedCurrent = state.zadaci.filter((zadatak) => zadatak.id !== idZadatka);
-            const updatedFinished = state.dovrseniZadaci.concat(taskToMove);
+      // Move the task to the appropriate list based on your business logic
+      const updatedCurrentDovrseni = state.zadaci.filter((zadatak) => zadatak.id !== idDovrsenog);
+      const updatedFinishedDovrseni = state.dovrseniZadaci.concat(taskToMoveDovrseni);
 
-            return {
-                ...state,
-                zadaci: updatedCurrent,
-                dovrseniZadaci: updatedFinished,
-            };
+      return {
+        ...state,
+        zadaci: updatedCurrentDovrseni,
+        dovrseniZadaci: updatedFinishedDovrseni,
+      };
 
-        default:
-            return state;
-    }
+    case PROMJENA_NEDOVRSENIH:
+      const { idZadatka: idNedovrsenog } = action.payload;
+
+      // Find the task in the current list
+      const taskToMoveNedovrseni = state.zadaci.find((zadatak) => zadatak.id === idNedovrsenog);
+
+      if (!taskToMoveNedovrseni) {
+        console.error(`Task with id ${idNedovrsenog} not found.`);
+        return state;
+      }
+
+      // Move the task to the appropriate list based on your business logic
+      const updatedCurrentNedovrseni = state.zadaci.filter((zadatak) => zadatak.id !== idNedovrsenog);
+      const updatedFinishedNedovrseni = state.nedovrseniZadaci.concat(taskToMoveNedovrseni);
+
+      return {
+        ...state,
+        zadaci: updatedCurrentNedovrseni,
+        nedovrseniZadaci: updatedFinishedNedovrseni,
+      };
+
+    default:
+      return state;
+  }
 };
 
 export default zadatakReducer;

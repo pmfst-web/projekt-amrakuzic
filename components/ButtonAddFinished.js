@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-const ButtonComponent = ({ onPress }) => {
+const ButtonAddComponent = ({ onPress }) => {
   return (
     <View style={styles.container}>
       <Pressable
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 0,
     position: 'absolute',
-    bottom:'14%',
+    bottom:'35%',
     width:'10%',
   },
   button: {
@@ -55,4 +55,4 @@ const styles = StyleSheet.create({
     
   },
 });
-export default ButtonComponent;
+export default ButtonAddComponent;
