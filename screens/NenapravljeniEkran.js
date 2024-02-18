@@ -1,15 +1,12 @@
-import Naslov from '../components/Naslov';
+
 import { FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
 import { ZADACI } from '../data/test-podaci';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, Pressable } from 'react-native';
-import ButtonComponent from '../components/ButtonComponent';
-import ButtonDelete from '../components/ButtonDelete';
 import ModalComponent from '../components/ModalComponent';
 import ModalDetalji from '../components/ModalDetalji';
 import ListaElement from '../components/ListaElement';
-import Swipeable from 'react-native-swipeable';
 
 
 const Item = ({title}) => (
@@ -21,7 +18,7 @@ const Item = ({title}) => (
 const NenapravljeniEkran = ({ route, navigation }) => {
   const [itemModalVisible, setItemModalVisible] = useState(false);
   const [addModalVisible, setAddModalVisible] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null); // State to store the selected item
+  const [selectedItem, setSelectedItem] = useState(null);
   const zadaciPrikaz = useSelector((state) => state.zadaci.nedovrseniZadaci);
 
   const handleItemModal = (podaci) => {

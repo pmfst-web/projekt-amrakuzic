@@ -4,7 +4,7 @@ import { TouchableWithoutFeedback } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import React, { useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { izbrisiZadatak, promjenaDovrsenih, promjenaNedovrsenih } from "../store/actions/zadaci";
+import { izbrisiZadatak, promjenaDovrsenih, promjenaNedovrsenih,resetFilter } from "../store/actions/zadaci";
 import { Button } from 'react-native-paper';
 import ButtonComponent from './ButtonComponent';
 import ButtonAddComponent from './ButtonAddFinished';
@@ -30,16 +30,19 @@ const ModalDetalji = ({modalVisible,closeModal,selectedItem}) => {
     const akcijaPromjenaDovrsenih = () =>{
       console.log(idZadatka);
       dispatch(promjenaDovrsenih(idZadatka));
+      dispatch(resetFilter());
       closeModal();
     }
     const akcijaPromjenaNedovrsenih = () =>{
       console.log(idZadatka);
       dispatch(promjenaNedovrsenih(idZadatka));
+      dispatch(resetFilter());
       closeModal();
     }
     const akcijaIzbrisiZadatak = () =>{
       console.log(idZadatka);
       dispatch(izbrisiZadatak(idZadatka));
+      dispatch(resetFilter());
       closeModal();
     }
   return (

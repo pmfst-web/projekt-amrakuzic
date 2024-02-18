@@ -1,5 +1,5 @@
 import { ZADACI } from "../../data/test-podaci";
-import { PROMJENA_DOVRSENIH, PROMJENA_NEDOVRSENIH, DODAJ_ZADATAK, IZBRISI_ZADATAK, FILTRIRAJ } from "../actions/zadaci";
+import { PROMJENA_DOVRSENIH, PROMJENA_NEDOVRSENIH, DODAJ_ZADATAK, IZBRISI_ZADATAK, FILTRIRAJ,RESET_FILTER } from "../actions/zadaci";
 
 const pocetnoStanje = {
   zadaci: ZADACI,
@@ -89,6 +89,12 @@ const zadatakReducer = (state = pocetnoStanje, action) => {
               filtriraniZadaci: filterZadaci,
               currentFilterIndex: nextFilterIndex,
             };
+      case RESET_FILTER:
+        return {
+          ...state,
+          filtriraniZadaci: state.zadaci,
+          currentFilterIndex: 0,
+        };
     default:
       return state;
   }

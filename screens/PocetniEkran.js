@@ -1,23 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Button, Pressable } from 'react-native';
-import Naslov from '../components/Naslov';
 import ButtonComponent from '../components/ButtonComponent';
-import ButtonDelete from '../components/ButtonDelete';
 import { FlatList } from 'react-native';
 import ModalComponent from '../components/ModalComponent';
 import ModalDetalji from '../components/ModalDetalji';
 import { ZADACI } from '../data/test-podaci';
 import ListaElement from '../components/ListaElement';
 import { useSelector } from 'react-redux';
-import Swipeable from 'react-native-swipeable';
-
 
 const PocetniEkran = ({ route, navigation }) => {
   const [itemModalVisible, setItemModalVisible] = useState(false);
   const [addModalVisible, setAddModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null); 
   const zadaciPrikaz = useSelector((state) => state.zadaci.filtriraniZadaci);
-
+  useEffect(() => {
+    console.log('refresh');
+  }, [zadaciPrikaz]);
   const handleItemModal = (selectedItem) => {
     setSelectedItem(selectedItem);
     setItemModalVisible(true);

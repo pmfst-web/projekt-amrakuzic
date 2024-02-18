@@ -3,6 +3,7 @@ export const PROMJENA_NEDOVRSENIH = 'PROMJENA_NEDOVRSENIH';
 export const DODAJ_ZADATAK = 'DODAJ_ZADATAK';
 export const IZBRISI_ZADATAK = 'IZBRISI_ZADATAK';
 export const FILTRIRAJ = 'FILTRIRAJ';
+export const RESET_FILTER = 'RESET_FILTER';
 
 export const promjenaDovrsenih = (idZadatka) => {
     return {
@@ -40,8 +41,11 @@ export const izbrisiZadatak = (idZadatka) => {
 export const filtriraj = () => {
     return {
         type: FILTRIRAJ, 
-
     };
-
-
 };
+
+export const resetFilter = () => {
+    return {
+      type: RESET_FILTER,
+    };
+  };
