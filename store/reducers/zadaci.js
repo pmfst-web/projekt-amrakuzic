@@ -6,7 +6,7 @@ const pocetnoStanje = {
   dovrseniZadaci: [],
   nedovrseniZadaci: [],
   izbrisaniZadaci: [],
-  filtriraniZadaci: [],
+  filtriraniZadaci: ZADACI,
   availableFilters: ['none','lako', 'srednje', 'tesko'],
   currentFilterIndex: 0,
 };
@@ -69,6 +69,8 @@ const zadatakReducer = (state = pocetnoStanje, action) => {
     case FILTRIRAJ:
         const nextFilterIndex = (state.currentFilterIndex + 1) % state.availableFilters.length;
         const nextFilterType = state.availableFilters[nextFilterIndex];
+        console.log(nextFilterIndex);
+        console.log(nextFilterType);
         let filterZadaci;
         switch (nextFilterType) {
             case 'lako':
