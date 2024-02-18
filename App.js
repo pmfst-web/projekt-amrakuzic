@@ -51,14 +51,6 @@ const tabOptions = ({ route }) => ({
   // Stvaramo centralni spremnik
   const store = createStore(glavniReducer);
 export default function App() {
-  const [unos, postaviUnos] = useState('');
-  const [iznos, postaviIznos] = useState(0);
-  const [ciljevi, postaviCiljeve] = useState([]);
-  console.log(glavniReducer);
-  const [ukupniTrosak, postaviUkupniTrosak] = useState(0);
-  const [brojElemenata, postaviBrojElemenata] = useState(0);
-  const [prosjekTroskova, postaviProsjekTroskova] = useState(0);
-  const [modalVisible, setModalVisible] = useState(true);
 
   return (
     <Provider store={store}>
@@ -66,7 +58,7 @@ export default function App() {
             <Naslov naslov={"Task Tracker"}/>
             <Tab.Navigator
               initialRouteName="Pocetni"
-              screenOptions={() => ({
+              screenOptions={({route}) => ({
                 headerShown: false,
                 tabBarStyle: {
                   height: 90,

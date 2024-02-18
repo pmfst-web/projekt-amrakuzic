@@ -1,10 +1,11 @@
 import { ZADACI } from "../../data/test-podaci";
-import { PROMJENA_DOVRSENIH, PROMJENA_NEDOVRSENIH, DODAJ_ZADATAK } from "../actions/zadaci";
+import { PROMJENA_DOVRSENIH, PROMJENA_NEDOVRSENIH, DODAJ_ZADATAK, IZBRISI_ZADATAK } from "../actions/zadaci";
 
 const pocetnoStanje = {
   zadaci: ZADACI,
   dovrseniZadaci: [],
   nedovrseniZadaci: [],
+  izbrisaniZadaci: [],
 };
 
 const zadatakReducer = (state = pocetnoStanje, action) => {
@@ -50,9 +51,8 @@ const zadatakReducer = (state = pocetnoStanje, action) => {
         zadaci: updatedCurrentNedovrseni,
         nedovrseniZadaci: updatedFinishedNedovrseni,
       };
-      case DODAJ_ZADATAK:
+    case DODAJ_ZADATAK:
         const { noviZadatak } = action.payload;
-        console.log(...state.zadaci);
         return {
           ...state,
           zadaci: [...state.zadaci, noviZadatak],

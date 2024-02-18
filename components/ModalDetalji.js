@@ -4,11 +4,12 @@ import { TouchableWithoutFeedback } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import React, { useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { promjenaDovrsenih, promjenaNedovrsenih } from "../store/actions/zadaci";
+import { izbrisiZadatak, promjenaDovrsenih, promjenaNedovrsenih } from "../store/actions/zadaci";
 import { Button } from 'react-native-paper';
 import ButtonComponent from './ButtonComponent';
 import ButtonAddComponent from './ButtonAddFinished';
 import Zadatak from '../models/zadatak';
+import ButtonDeleteTask from './ButtonDeleteTask';
 const ModalDetalji = ({modalVisible,closeModal,selectedItem}) => {
 
   const handleOverlayClick = (event) => {
@@ -23,6 +24,7 @@ const ModalDetalji = ({modalVisible,closeModal,selectedItem}) => {
     const sviZadaci = useSelector(state => state.zadaci.zadaci);
     const zadatak = sviZadaci.find((r) => r.id === idZadatka);
     const dispatch = useDispatch();
+
     const akcijaPromjenaDovrsenih = () =>{
       console.log(idZadatka);
       dispatch(promjenaDovrsenih(idZadatka));
@@ -44,6 +46,7 @@ const ModalDetalji = ({modalVisible,closeModal,selectedItem}) => {
             <Text style={styles.textStyle}>ID: {selectedItem.id}</Text>
             <Text style={styles.textStyle}>Naslov: {selectedItem.naslov}</Text>
             <ButtonAddComponent onPress={akcijaPromjenaNedovrsenih} />
+
             <Text style={styles.textStyle}>Opis: {selectedItem.opis}</Text>
 
             <Text style={styles.textStyle}>Tezina: {selectedItem.tezina}</Text>
