@@ -8,6 +8,7 @@ import { promjenaDovrsenih, promjenaNedovrsenih } from "../store/actions/zadaci"
 import { Button } from 'react-native-paper';
 import ButtonComponent from './ButtonComponent';
 import ButtonAddComponent from './ButtonAddFinished';
+import Zadatak from '../models/zadatak';
 const ModalDetalji = ({modalVisible,closeModal,selectedItem}) => {
 
   const handleOverlayClick = (event) => {
@@ -18,7 +19,6 @@ const ModalDetalji = ({modalVisible,closeModal,selectedItem}) => {
     if (!selectedItem || !selectedItem.id) {
       return null;
     }
-    console.log(selectedItem);
     const idZadatka = selectedItem.id;
     const sviZadaci = useSelector(state => state.zadaci.zadaci);
     const zadatak = sviZadaci.find((r) => r.id === idZadatka);
@@ -49,7 +49,7 @@ const ModalDetalji = ({modalVisible,closeModal,selectedItem}) => {
             <Text style={styles.textStyle}>Tezina: {selectedItem.tezina}</Text>
             <ButtonComponent onPress={akcijaPromjenaDovrsenih} />
             
-            <Text style={styles.textStyle}>Vrijeme: {selectedItem.vrijeme}</Text>
+            <Text>{selectedItem.vrijeme instanceof Date ? selectedItem.vrijeme.toISOString() : ''}</Text>
             
         </View>
       </View>

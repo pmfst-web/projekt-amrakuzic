@@ -1,5 +1,5 @@
 import { ZADACI } from "../../data/test-podaci";
-import { PROMJENA_DOVRSENIH, PROMJENA_NEDOVRSENIH } from "../actions/zadaci";
+import { PROMJENA_DOVRSENIH, PROMJENA_NEDOVRSENIH, DODAJ_ZADATAK } from "../actions/zadaci";
 
 const pocetnoStanje = {
   zadaci: ZADACI,
@@ -50,7 +50,13 @@ const zadatakReducer = (state = pocetnoStanje, action) => {
         zadaci: updatedCurrentNedovrseni,
         nedovrseniZadaci: updatedFinishedNedovrseni,
       };
-
+      case DODAJ_ZADATAK:
+        const { noviZadatak } = action.payload;
+        console.log(...state.zadaci);
+        return {
+          ...state,
+          zadaci: [...state.zadaci, noviZadatak],
+        };
     default:
       return state;
   }

@@ -4,23 +4,42 @@ import { TouchableWithoutFeedback } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
 import { FontAwesome } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { useDispatch } from 'react-redux';
+import { dodajZadatak } from "../store/actions/zadaci";
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
+import Zadatak from '../models/zadatak';
 
-
-const ModalComponent = ({modalVisible,closeModal}) => {
+const ModalComponent = ({ modalVisible, closeModal }) => {
   const [naziv, setNaziv] = useState('');
   const [opis, setOpis] = useState('');
-  const [vrijeme, setVrijeme] = useState('');
+  const [tezina, setTezina] = useState('');
+  const [vrsta, setVrsta] = useState('');   
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
   const odabirTezina = ["Lako", "Srednje", "Teško"];
   const odabirVrsta = ["Škola", "Posao", "Slobodno Vrijeme"];
+
   const noviNaziv = (text) => setNaziv(text);
   const noviOpis = (text) => setOpis(text);
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const handleOverlayClick = (event) => {
-      if (event.target === event.currentTarget) {
-        closeModal();
-      }
-    }
 
+  const handleOverlayClick = (event) => {
+    if (event.target === event.currentTarget) {
+      closeModal();
+    }
+  };
+
+  const dispatch = useDispatch();
+
+  const handleDodaj = () => {
+    const id = uuidv4();
+    const noviZadatak = new Zadatak(id, naziv, opis, tezina, vrsta, selectedDate.toISOString());
+
+    console.log(noviZadatak);
+    dispatch(dodajZadatak(noviZadatak));
+
+    closeModal();
+  };
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>
       <TouchableWithoutFeedback onPress={handleOverlayClick}>
@@ -54,18 +73,15 @@ const ModalComponent = ({modalVisible,closeModal}) => {
               rowTextStyle={styles.dropdown2RowTxtStyle}
               data={odabirTezina}
               onSelect={(selectedItem, index) => {
-                console.log(selectedItem, index)
+                console.log(selectedItem, index);
+                setTezina(selectedItem);
               }}
               defaultButtonText = "Odaberi težinu:"
               buttonTextAfterSelection={(selectedItem, index) => {
-              // text represented after item is selected
-              // if data array is an array of objects then return selectedItem.property to render after item is selected
-                return selectedItem
+                return selectedItem;
               }}
               rowTextForSelection={(item, index) => {
-              // text represented for each item in dropdown
-              // if data array is an array of objects then return item.property to represent item in dropdown
-                return item
+                return item;
               }}
             />
             <SelectDropdown
@@ -80,14 +96,15 @@ const ModalComponent = ({modalVisible,closeModal}) => {
               rowStyle={styles.dropdown2RowStyle}
               rowTextStyle={styles.dropdown2RowTxtStyle}
               onSelect={(selectedItem, index) => {
-                console.log(selectedItem, index)
+                console.log(selectedItem, index);
+                setVrsta(selectedItem);
               }}
               defaultButtonText = "Odaberi vrstu:"
               buttonTextAfterSelection={(selectedItem, index) => {
-                return selectedItem
+                return selectedItem;
               }}
               rowTextForSelection={(item, index) => {
-                return item
+                return item;
               }}
             />
           </View>
@@ -106,7 +123,7 @@ const ModalComponent = ({modalVisible,closeModal}) => {
           
         </View>
         <View style={styles.modalButtons}>
-            <Pressable style={[styles.button, styles.buttonDodaj]} >
+            <Pressable style={[styles.button, styles.buttonDodaj]} onPress={handleDodaj} >
               <Text style={styles.textStyle}>Dodaj</Text>
             </Pressable>
           </View>

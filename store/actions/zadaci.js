@@ -1,5 +1,6 @@
 export const PROMJENA_DOVRSENIH = 'PROMJENA_DOVRSENIH';
 export const PROMJENA_NEDOVRSENIH = 'PROMJENA_NEDOVRSENIH';
+export const DODAJ_ZADATAK = 'DODAJ_ZADATAK';
 export const promjenaDovrsenih = (idZadatka) => {
     return {
         type: PROMJENA_DOVRSENIH, 
@@ -15,3 +16,10 @@ export const promjenaNedovrsenih = (idZadatka) => {
         payload: { idZadatka },
     };
 };
+
+export const dodajZadatak = (noviZadatak) => {
+    return {
+        type: DODAJ_ZADATAK,
+        payload: { noviZadatak },
+    };
+  };
