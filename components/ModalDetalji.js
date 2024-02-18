@@ -10,6 +10,8 @@ import ButtonComponent from './ButtonComponent';
 import ButtonAddComponent from './ButtonAddFinished';
 import Zadatak from '../models/zadatak';
 import ButtonDeleteTask from './ButtonDeleteTask';
+import ButtonUnfinished from './ButtonUnfinished';
+import ButtonAddFinished from './ButtonAddFinished';
 const ModalDetalji = ({modalVisible,closeModal,selectedItem}) => {
 
   const handleOverlayClick = (event) => {
@@ -49,12 +51,12 @@ const ModalDetalji = ({modalVisible,closeModal,selectedItem}) => {
             <Text style={styles.naslov}>Detalji Zadatka</Text>
             <Text style={styles.textStyle}>ID: {selectedItem.id}</Text>
             <Text style={styles.textStyle}>Naslov: {selectedItem.naslov}</Text>
-            <ButtonAddComponent onPress={akcijaPromjenaNedovrsenih} />
+            <ButtonUnfinished onPress={akcijaPromjenaNedovrsenih} />
 
             <Text style={styles.textStyle}>Opis: {selectedItem.opis}</Text>
 
             <Text style={styles.textStyle}>Tezina: {selectedItem.tezina}</Text>
-            <ButtonComponent onPress={akcijaPromjenaDovrsenih} />
+            <ButtonAddFinished onPress={akcijaPromjenaDovrsenih} />
             <ButtonDeleteTask onPress={akcijaIzbrisiZadatak}/>
             <Text>{selectedItem.vrijeme instanceof Date ? selectedItem.vrijeme.toISOString() : ''}</Text>
             

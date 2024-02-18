@@ -24,7 +24,7 @@ import Naslov  from './components/Naslov';
 import Filter from './components/Filter';
 import {Ionicons} from '@expo/vector-icons';
 import { Provider } from "react-redux";
-import ModalFilter from './components/ModalFilter';
+
 const Tab = createBottomTabNavigator()
 
 

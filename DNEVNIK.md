@@ -42,3 +42,14 @@ Ispis detalja zadatka na novu komponentu.
 Popravljene dependency pogreške.
 Zamijenjena DateTimePicker komponenta.
 
+## 17.02.2024.
+### Kratki opis promjena
+Popravljene dependency pogreške.
+
+## 18.02.2024.
+### Kratki opis promjena
+Redux - Promjena zadataka u dovršene
+Redux - Promjena zadataka u nedovršene
+Redux - Dodavanje zadataka
+Redux - Brisanje zadataka
+Redux - Filtriranje prema težini zadatka

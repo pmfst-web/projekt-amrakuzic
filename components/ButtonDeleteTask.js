@@ -14,7 +14,7 @@ const ButtonDeleteTask = ({ onPress }) => {
           styles.button
         ]}>
         {({ }) => (
-          <Ionicons name="add" size={42} color="white" />
+          <Ionicons name="trash-bin" size={42} color="white" />
         )}
 
       </Pressable>
@@ -26,29 +26,29 @@ const ButtonDeleteTask = ({ onPress }) => {
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 0,
-    position: 'absolute',
-    bottom:'50%',
-    right: '15%',
-    width:'10%',
-  },
-  button: {
-    borderRadius: 35,
-    alignContent:'center',
-    alignSelf:'center',
-    alignItems:'center',
-    paddingLeft:3,
-    paddingTop:12,
-    width: 70,
-    height: 70,
-    backgroundColor: 'red',
-    shadowColor: "white",
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
+    container: {
+        flex: 1,
+        padding: 0,
+        position: 'relative',
+        bottom:'80%',
+        right:'-45%',
+        width:'10%',
+      },
+    button: {
+        borderRadius: 35,
+        alignContent:'center',
+        alignSelf:'center',
+        alignItems:'center',
+        paddingLeft:3,
+        paddingTop:12,
+        width: 70,
+        height: 70,
+        backgroundColor: 'red',
+        shadowColor: "white",
+        shadowOffset: {
+        width: 0,
+        height: 0,
+        },
     shadowOpacity: 0.48,
     shadowRadius: 2,
     

@@ -39,7 +39,8 @@ const stil = StyleSheet.create({
     flex: 0.99,
   },
   naslov: {
-    color: "white"
+    color: "white",
+    fontSize: 16,
   },
   tezina: {
     color: "white",

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-const ButtonAddFinished = ({ onPress }) => {
+const ButtonUnfinished = ({ onPress }) => {
   return (
     <View style={styles.container}>
       <Pressable
@@ -14,7 +14,7 @@ const ButtonAddFinished = ({ onPress }) => {
           styles.button
         ]}>
         {({ }) => (
-          <Ionicons name="checkmark-done" size={42} color="lightgreen" />
+          <Ionicons name="close" size={42} color="red" />
         )}
 
       </Pressable>
@@ -30,9 +30,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 0,
     position: 'relative',
-    bottom:'-35%',
+    bottom:'-65%',
+    right:'-45%',
     width:'10%',
-    right:'45%',
   },
   button: {
     borderRadius: 35,
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     paddingTop:12,
     width: 70,
     height: 70,
-    backgroundColor: '#0060F1',
+    backgroundColor: 'darkgrey',
     shadowColor: "white",
     shadowOffset: {
       width: 0,
@@ -56,4 +56,4 @@ const styles = StyleSheet.create({
     
   },
 });
-export default ButtonAddFinished;
+export default ButtonUnfinished;
