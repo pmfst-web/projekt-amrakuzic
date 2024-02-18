@@ -35,7 +35,11 @@ const ModalDetalji = ({modalVisible,closeModal,selectedItem}) => {
       dispatch(promjenaNedovrsenih(idZadatka));
       closeModal();
     }
-
+    const akcijaIzbrisiZadatak = () =>{
+      console.log(idZadatka);
+      dispatch(izbrisiZadatak(idZadatka));
+      closeModal();
+    }
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>
       <TouchableWithoutFeedback onPress={handleOverlayClick}>
@@ -51,7 +55,7 @@ const ModalDetalji = ({modalVisible,closeModal,selectedItem}) => {
 
             <Text style={styles.textStyle}>Tezina: {selectedItem.tezina}</Text>
             <ButtonComponent onPress={akcijaPromjenaDovrsenih} />
-            
+            <ButtonDeleteTask onPress={akcijaIzbrisiZadatak}/>
             <Text>{selectedItem.vrijeme instanceof Date ? selectedItem.vrijeme.toISOString() : ''}</Text>
             
         </View>

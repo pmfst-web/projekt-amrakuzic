@@ -57,6 +57,12 @@ const zadatakReducer = (state = pocetnoStanje, action) => {
           ...state,
           zadaci: [...state.zadaci, noviZadatak],
         };
+    case IZBRISI_ZADATAK:
+        const { idZadatka: id } = action.payload;
+        return {
+            ...state,
+            zadaci: state.zadaci.filter((zadatak) => zadatak.id !== id),
+          };
     default:
       return state;
   }

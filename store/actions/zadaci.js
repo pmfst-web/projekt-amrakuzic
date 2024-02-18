@@ -26,3 +26,12 @@ export const dodajZadatak = (noviZadatak) => {
     };
 
 };
+
+export const izbrisiZadatak = (idZadatka) => {
+    return {
+        type: IZBRISI_ZADATAK, 
+        payload: { idZadatka },
+    };
+
+
+};
