@@ -66,7 +66,7 @@ export default function App() {
             <Naslov naslov={"Task Tracker"}/>
             <Tab.Navigator
               initialRouteName="Pocetni"
-              screenOptions={({ route }) => ({
+              screenOptions={() => ({
                 headerShown: false,
                 tabBarStyle: {
                   height: 90,

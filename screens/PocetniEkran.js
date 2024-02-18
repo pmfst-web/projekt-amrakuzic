@@ -16,10 +16,10 @@ const PocetniEkran = ({ route, navigation }) => {
   const [itemModalVisible, setItemModalVisible] = useState(false);
   const [addModalVisible, setAddModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null); // State to store the selected item
-  const zadaciPrikaz = useSelector((state) => state.zadaci.filterZadaci);
+  const zadaciPrikaz = useSelector((state) => state.zadaci.zadaci);
 
-  const handleItemModal = (podaci) => {
-    setSelectedItem(podaci.item); // Set the selected item
+  const handleItemModal = (selectedItem) => {
+    setSelectedItem(selectedItem);
     setItemModalVisible(true);
   };
 
@@ -36,7 +36,7 @@ const PocetniEkran = ({ route, navigation }) => {
   const prikazElementa = (podaci) => {
     return (
         <ListaElement
-          onPress={() => handleItemModal(podaci)}
+          onPress={() => handleItemModal(podaci.item)}
           natpis={podaci.item.naslov}
         />
     );
@@ -52,7 +52,7 @@ const PocetniEkran = ({ route, navigation }) => {
           renderItem={prikazElementa}
           numColumns={1}
         />
-        <Button title="Promjena dovrsenih" style={{width:250,height:250,margin:10,border:25,borderColor:'red',alignItems:'center'}}/>
+
         <ButtonComponent onPress={handleAddModal} />
         
         <ModalDetalji

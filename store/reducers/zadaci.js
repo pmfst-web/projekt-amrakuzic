@@ -1,7 +1,16 @@
+import { ZADACI } from "../../data/test-podaci";
+import { PROMJENA_DOVRSENIH } from "../actions/zadaci";
+
+const pocetnoStanje = {
+    zadaci: ZADACI,
+    dovrseniZadaci: [],
+    nedovrseniZadaci: [],
+  };
+
 const zadatakReducer = (state = pocetnoStanje, action) => {
     switch (action.type) {
         case PROMJENA_DOVRSENIH:
-            const { idZadatka } = action;
+            const { idZadatka } = action.payload;
 
             // Find the task in the current list
             const taskToMove = state.zadaci.find((zadatak) => zadatak.id === idZadatka);

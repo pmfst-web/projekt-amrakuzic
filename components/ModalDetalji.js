@@ -7,24 +7,24 @@ import { useSelector, useDispatch } from "react-redux";
 import { promjenaDovrsenih } from "../store/actions/zadaci";
 import { Button } from 'react-native-paper';
 import ButtonComponent from './ButtonComponent';
-const ModalDetalji = ({modalVisible,closeModal,selectedItem,route}) => {
-  const idZadatka = Number(route.params.id);
-  const sviRadovi = useSelector(state => state.zadaci.zadaci);
-  const zadatak = sviZadaci.find((r) => r.id === idZadatka);
-  console.log(idZadatka);
+const ModalDetalji = ({modalVisible,closeModal,selectedItem}) => {
+
   const handleOverlayClick = (event) => {
-      if (event.target === event.currentTarget) {
-        closeModal();
+    if (event.target === event.currentTarget) {
+      closeModal();
       }
     }
-    if (!selectedItem) {
-        return null; // ako nista nije odabrano nemoj ga otvarati
-      }
-
-
+    if (!selectedItem || !selectedItem.id) {
+      return null;
+    }
+    console.log(selectedItem);
+    const idZadatka = selectedItem.id;
+    const sviZadaci = useSelector(state => state.zadaci.zadaci);
+    const zadatak = sviZadaci.find((r) => r.id === idZadatka);
     const dispatch = useDispatch();
     const akcijaPromjenaDovrsenih = () =>{
-      dispatch(promjenaDovrsenih(2));
+      console.log(idZadatka)
+      dispatch(promjenaDovrsenih(idZadatka));
       closeModal();
     }
 
