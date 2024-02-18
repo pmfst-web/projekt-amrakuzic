@@ -1,10 +1,17 @@
 import React from 'react';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { filtriraj } from "../store/actions/zadaci";
+import Zadatak from '../models/zadatak';
+import { useSelector, useDispatch } from "react-redux";
 const Filter = ({ onPress }) => {
+  const dispatch = useDispatch();
+  const filtrirajZadatke = () =>{
+    dispatch(filtriraj());
+  }
   return (
     <View style={styles.container}>
-      <Pressable style={styles.button} onPress={onPress}>
+      <Pressable style={styles.button} onPress={filtrirajZadatke}>
         <Ionicons name="filter" size={32} color="white"/>
       </Pressable>
     </View>

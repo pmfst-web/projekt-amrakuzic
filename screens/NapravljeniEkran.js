@@ -16,7 +16,7 @@ import Swipeable from 'react-native-swipeable';
 const NapravljeniEkran = ({ route, navigation }) => {
   const [itemModalVisible, setItemModalVisible] = useState(false);
   const [addModalVisible, setAddModalVisible] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null); // State to store the selected item
+  const [selectedItem, setSelectedItem] = useState(null);
   const zadaciPrikaz = useSelector((state) => state.zadaci.dovrseniZadaci);
 
   const handleItemModal = (podaci) => {

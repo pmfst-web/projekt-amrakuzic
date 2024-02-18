@@ -17,8 +17,8 @@ const ModalComponent = ({ modalVisible, closeModal }) => {
   const [vrsta, setVrsta] = useState('');   
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const odabirTezina = ["Lako", "Srednje", "Teško"];
-  const odabirVrsta = ["Škola", "Posao", "Slobodno Vrijeme"];
+  const odabirTezina = ["lako", "srednje", "tesko"];
+  const odabirVrsta = ["skola", "posao", "slobodno vrijeme"];
 
   const noviNaziv = (text) => setNaziv(text);
   const noviOpis = (text) => setOpis(text);

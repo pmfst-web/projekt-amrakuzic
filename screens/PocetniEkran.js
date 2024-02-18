@@ -15,8 +15,8 @@ import Swipeable from 'react-native-swipeable';
 const PocetniEkran = ({ route, navigation }) => {
   const [itemModalVisible, setItemModalVisible] = useState(false);
   const [addModalVisible, setAddModalVisible] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null); // State to store the selected item
-  const zadaciPrikaz = useSelector((state) => state.zadaci.zadaci);
+  const [selectedItem, setSelectedItem] = useState(null); 
+  const zadaciPrikaz = useSelector((state) => state.zadaci.filtriraniZadaci);
 
   const handleItemModal = (selectedItem) => {
     setSelectedItem(selectedItem);
@@ -27,17 +27,12 @@ const PocetniEkran = ({ route, navigation }) => {
     setAddModalVisible(!addModalVisible);
   };
 
-  const handleSwipeRight = () => {
-    // Implement the delete functionality here
-    // You can remove the item from the list using its ID or any other unique identifier
-    // Example: dispatch(deleteItem(podaci.item.id));
-  };
-
   const prikazElementa = (podaci) => {
     return (
         <ListaElement
           onPress={() => handleItemModal(podaci.item)}
           natpis={podaci.item.naslov}
+          tezina={podaci.item.tezina}
         />
     );
   };

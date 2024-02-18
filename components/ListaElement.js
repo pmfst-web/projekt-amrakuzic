@@ -10,6 +10,7 @@ const ListaElement = (props) => {
         <View style={{ ...stil.tipka, ...props.style }}>
           <View style={stil.ime}>
             <Text style={stil.naslov}>{props.natpis}</Text>
+            <Text style={stil.tezina}>{props.tezina}</Text>
           </View>
           <View style={stil.ikona}>
             <Foundation name="magnifying-glass" size={16} color={Boje.Bijela} />
@@ -39,6 +40,13 @@ const stil = StyleSheet.create({
   },
   naslov: {
     color: "white"
+  },
+  tezina: {
+    color: "white",
+    position: 'relative',
+    left:'60%',
+    width:'100%',
+    height:'100%',
   },
   ime: {
     width: '70%',

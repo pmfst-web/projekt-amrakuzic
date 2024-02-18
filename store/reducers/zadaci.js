@@ -1,11 +1,14 @@
 import { ZADACI } from "../../data/test-podaci";
-import { PROMJENA_DOVRSENIH, PROMJENA_NEDOVRSENIH, DODAJ_ZADATAK, IZBRISI_ZADATAK } from "../actions/zadaci";
+import { PROMJENA_DOVRSENIH, PROMJENA_NEDOVRSENIH, DODAJ_ZADATAK, IZBRISI_ZADATAK, FILTRIRAJ } from "../actions/zadaci";
 
 const pocetnoStanje = {
   zadaci: ZADACI,
   dovrseniZadaci: [],
   nedovrseniZadaci: [],
   izbrisaniZadaci: [],
+  filtriraniZadaci: [],
+  availableFilters: ['lako', 'srednje', 'tesko', 'none'],
+  currentFilterIndex: 0,
 };
 
 const zadatakReducer = (state = pocetnoStanje, action) => {
@@ -63,6 +66,29 @@ const zadatakReducer = (state = pocetnoStanje, action) => {
             ...state,
             zadaci: state.zadaci.filter((zadatak) => zadatak.id !== id),
           };
+    case FILTRIRAJ:
+        const nextFilterIndex = (state.currentFilterIndex + 1) % state.availableFilters.length;
+        const nextFilterType = state.availableFilters[nextFilterIndex];
+        let filterZadaci;
+        switch (nextFilterType) {
+            case 'lako':
+                filterZadaci = state.zadaci.filter((zadatak) => zadatak.tezina === 'lako');
+                break;
+            case 'srednje':
+                filterZadaci = state.zadaci.filter((zadatak) => zadatak.tezina === 'srednje');
+                break;
+            case 'tesko':
+                filterZadaci = state.zadaci.filter((zadatak) => zadatak.tezina === 'tesko');
+                break;
+            default:
+                filterZadaci = state.zadaci;
+            }
+      
+            return {
+              ...state,
+              filtriraniZadaci: filterZadaci,
+              currentFilterIndex: nextFilterIndex,
+            };
     default:
       return state;
   }
