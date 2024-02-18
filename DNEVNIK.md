@@ -53,3 +53,4 @@ Redux - Promjena zadataka u nedovršene
 Redux - Dodavanje zadataka
 Redux - Brisanje zadataka
 Redux - Filtriranje prema težini zadatka
+Dizajn poboljšanja
